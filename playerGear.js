@@ -479,11 +479,11 @@ window.playerGear={
             },
             applyStats:function(stats,player){
                 
-                stats.gliderSpeed=18
-                stats.gliderFall=-5
+                stats.gliderSpeed=50
+                stats.gliderFall=-0
             },
             desc:'Floats much faster than the Parachute, allowing you to fly through the sky!<br><br>Press jump while in the air to open. ',
-            cost:['5000000 honey'],
+            cost:['5 honey'],
         },
         
     },
