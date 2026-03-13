@@ -26542,7 +26542,9 @@ function BeeSwarmSimulator(DATA){
             out.sinPitch=Math.sin(out.pitch)
             
             let s=dt*out.walkSpeed,cdir=out.cosYaw,sdir=out.sinYaw
-            
+            if(user.clickedKeys['p']){
+    out.glideToggle = !out.glideToggle
+}
             if(!out.currentNPC&&!out.currentShop&&!out.removeAirFrictionUntilGrounded&&!out.isGliding){
                 
                 let dx=0,dz=0,c=0
@@ -26632,23 +26634,23 @@ function BeeSwarmSimulator(DATA){
                 out.body.velocity.y=out.gliderFall
             }
             
-           if(out.grounded){
+if(out.grounded){
     
-    if(out.isGliding && !(user.keys[' '] || jumpingButton)){
+    if(out.isGliding && !out.glideToggle){
         
         out.isGliding=false
         out.updateGear(true)
     }
-                
-                out.removeAirFrictionUntilGrounded=false
-                
-                if(user.keys[' ']||jumpingButton){
-                    out.grounded=false
-                    out.body.velocity.y=out.jumpPower
-                }
-                
-                out.body.velocity.x/=dt*out.friction+1
-                out.body.velocity.z/=dt*out.friction+1
+    
+    out.removeAirFrictionUntilGrounded=false
+    
+    if((user.keys[' ']||jumpingButton) && (out.grounded || out.glideToggle)){
+        out.grounded=false
+        out.body.velocity.y=out.jumpPower
+    }
+    
+    out.body.velocity.x/=dt*out.friction+1
+    out.body.velocity.z/=dt*out.friction+1
                 
             } else if(!out.removeAirFrictionUntilGrounded){
                 
@@ -34759,6 +34761,7 @@ function BeeSwarmSimulator(DATA){
     }
     
 }
+
 
 
 
